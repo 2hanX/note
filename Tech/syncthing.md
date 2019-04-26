@@ -37,7 +37,7 @@ apt-get update && apt-get install syncthing
 
 ### Configure Syncthing  （Windows）
 
-[window_config link](https://github.com/syncthing/docs/blob/master/users/autostart.rst#windows)
+[window_config_link](https://github.com/syncthing/docs/blob/master/users/autostart.rst#windows)
 
 [原文](https://null-byte.wonderhowto.com/how-to/securely-sync-files-between-two-machines-using-syncthing-0185999/)
 
