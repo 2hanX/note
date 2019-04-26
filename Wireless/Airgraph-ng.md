@@ -9,7 +9,7 @@
 
 ### Install
 
-`apt-get update & apt-get upgrade`
+`apt-get update && apt-get upgrade`
 
 `apt-get install aircrack-ng`
 
