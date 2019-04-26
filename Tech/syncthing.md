@@ -1,6 +1,6 @@
 ## 使用Syncthing在两台机器之间安全地同步文件 [^1]
 
-### Install
+### Install （Kali）
 
 `apt-get update && apt-get install apt-transport-https -V` [^2]
 
@@ -17,21 +17,27 @@ Pin-Priority: 1001' > /etc/apt/preferences.d/syncthing
 apt-get update && apt-get install syncthing
 ```
 
+### Install （Windows）
+
+`scoop install syncthing`
+
 ###  Start Syncthing
 
 `systemctl --user start syncthing.service` [^5]
 
 `ssh -L 9999:127.0.0.1:8384 -p 22 user@YOUR-VPS-IP-ADDRESS` [^6]
 
-### Configure Syncthing
+### Configure Syncthing  （Kali）
 
 - 添加远程设备
 - 粘贴设备ID
-- “默认文件夹”选项输入VPS IP地址时将端口**：22000** 附加到IP后面 - 这是默认的Syncthing侦听端口
+- “默认文件夹” 选项输入VPS IP地址时将端口**：22000** 附加到IP后面 - 这是默认的Syncthing侦听端口
 
 `systemctl --user enable syncthing` [^7]
 
+### Configure Syncthing  （Windows）
 
+[window_config link](https://github.com/syncthing/docs/blob/master/users/autostart.rst#windows)
 
 [原文](https://null-byte.wonderhowto.com/how-to/securely-sync-files-between-two-machines-using-syncthing-0185999/)
 
