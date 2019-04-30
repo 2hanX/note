@@ -40,7 +40,13 @@
 
 - `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run`
 
-### ...
+### USB Storage Devices [^9]
+
+- `HK_Local_Machine\System\ControlSet00x\Enum\USBSTOR`
+
+### Mounted Devices [^10]
+
+- `HKEY_LOCAL_MACHINE\System\MountedDevices`
 
 
 
@@ -56,3 +62,5 @@
 [^6]: 系统启动时启动的所有服务的位置。如果密钥设置为2，则服务自动启动; 如果设置为3，则必须手动启动服务; 如果密钥设置为4，则禁用该服务
 [^7]: 运行旧版16位应用程序时，运行程序的位置
 [^8]: 当特定用户登录时运行这些值
+[^9]: 查看系统是否被安装了键盘记录器或查看攻击者用USB驱动器删除了哪些机密信息。我们可以找到插入和使用USB存储设备的证据
+[^10]: 查看计算机上安装的每个设备
