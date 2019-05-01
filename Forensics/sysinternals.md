@@ -39,8 +39,8 @@
 - **PipeList** - 列出管道。
 - **PortMon** - 监视并显示所有串行和并行端口活动。
 - **ProcDump** - 监控CPU峰值。
-- **Process Explorer** - 显示有关加载哪些句柄和DLL进程的信息。
-- **Process Monitor** - 显示实时文件系统，注册表和进程/线程活动。
+- **Process Explorer （procexp)** - 显示有关加载哪些句柄和DLL进程的信息。
+- **Process Monitor （procmon）** - 显示实时文件系统，注册表和进程/线程活动。
 - **PsExec** - 允许您在远程系统上执行进程。
 - **PsGetSid** - 允许您将SID转换为其显示名称，反之亦然。
 - **PsInfo** - 收集有关本地或远程系统的关键信息，包括内核版本和内存量。
