@@ -13,7 +13,7 @@
    # 结果就是只要按键盘 Win + U 就可以打开 cmd 窗口，而不是辅助工具管理器窗口
    ```
 
-   - 类似的程序有osk.exe（屏幕键盘程序）、Narrator.exe（讲述人程序）、Magnify.exe（放大镜程序）等。
+   - 类似的程序有osk.exe（屏幕键盘程序）、Narrator.exe（讲述人程序）、Magnify.exe（放大镜程序）等
    - 优点：简单
    - 缺点：易被检测
    - 排查：工具autoruns [^3]
@@ -36,6 +36,8 @@
       `echo "hello" > :key.txt` [^5]
 
       `notepad demo.c:flags.txt`
+
+      `type demo.c:flags.txt`
 
       - ```powershell
         # 此时应该注意修改文件的timestamp，可使用如下的powershell命令或者使用NewFileTime工具
@@ -66,7 +68,7 @@
 
    - 优点：简单
    - 缺点：易被检测
-   - 排查： schtasks /query 命令进行查询或者通过计算机的管理查看，注意在windows的中文版系统中，schtasks命令需要切换字符为美国英语格式，使用命令chcp 437，或者直接工具autoruns
+   - 排查： `schtasks /query `命令进行查询或者通过计算机的管理查看，注意在windows的中文版系统中，schtasks命令需要切换字符为美国英语格式，使用命令`chcp 437`，或者直接工具autoruns
 
 4. #### 开机启动项
 
@@ -92,10 +94,12 @@
 6. #### waitfor.exe
 
    - 不支持自启动，但可远程主动激活，后台进程显示为waitfor.exe
+   - `certutil -encode infile outfile`
+   - `certutil -decode infile outfile`
    - Ref : [详细参考](https://github.com/3gstudent/Waitfor-Persistence)
    - 优点：远程主动激活
    - 缺点：有waitfor进程
-   - 排查：通过Process Explorer工具查看是否有waitfor.exe进程，并进一步查看启动参数等。
+   - 排查：通过Process Explorer （procexp）工具查看是否有waitfor.exe进程，并进一步查看启动参数等
 
 7. #### bitsadmin后门 [^6]
 
@@ -131,12 +135,12 @@
 
 10. #### meterpreter 权限维持 [^7]
 
-   - `metsvc `是开机自启动的服务型后门
-   - persistence模块是先上传vbs脚本并执行vbs脚本修改注册表`HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run`从而完成自启动
-   - Ref : [metsvc代码](https://github.com/rapid7/metasploit-framework/blob/76954957c740525cff2db5a60bcf936b4ee06c42/scripts/meterpreter/metsvc.rb)、[persistence代码](https://github.com/rapid7/metasploit-framework/blob/master/modules/post/windows/manage/persistence_exe.rb)
-   - 优点：开机自启动
-   - 缺点：容易被杀软杀
-   - 排查：autoruns
+  - `metsvc `是开机自启动的服务型后门
+  - persistence模块是先上传vbs脚本并执行vbs脚本修改注册表`HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run`从而完成自启动
+  - Ref : [metsvc代码](https://github.com/rapid7/metasploit-framework/blob/76954957c740525cff2db5a60bcf936b4ee06c42/scripts/meterpreter/metsvc.rb)、[persistence代码](https://github.com/rapid7/metasploit-framework/blob/master/modules/post/windows/manage/persistence_exe.rb)
+  - 优点：开机自启动
+  - 缺点：容易被杀软杀
+  - 排查：autoruns
 
 11. #### Empire persistence模块 [^8]
 
@@ -165,7 +169,7 @@
 [^2]: Windows提供了一个命令replace.exe，通过它我们可以替换系统文件
 [^3]: Windows Sysinternals工具集里的一个软件，可显示在系统启动或登录期间配置要运行的程序，以及启动各种内置Windows应用程序
 [^4]: windows自带命令行工具attrib用来显示或更改文件属性
-[^5]: 编辑时需退到上级目录进行查看 `dir /r`，删除时需要将宿主文件删除或使用 WinHex工具
+[^5]: 编辑时需退到上级目录进行查看 `dir /r`，删除时需要将宿主文件删除或使用 WinHex工具或压缩后解压替换
 [^6]: Bitsadmin从win7之后操作系统就默认包含，可以用来创建上传或者下载任务。Bistadmin可以指定下载成功之后要进行什么命令。后门就是利用的下载成功之后进行命令执行
 [^7]: meterpreter中的权限维持技术有两种，一种是metsvc的后门(服务后门)，另外一种是persistence(注册表后门)
 [^8]: Empire是一款功能非常强大的后渗透攻击框架。其中的persistence模块提供了一系列权限维持方法。工具还把权限维持分为了四大类，userland(普通权限)、elevated(需要高权限)、powerbreach(内存权限维持，重启后失效)、miscellaneous(其它)
