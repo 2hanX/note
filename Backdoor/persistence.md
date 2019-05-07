@@ -27,7 +27,7 @@
       - 优点：简单
 
       - 缺点：暂无
-      - 排查：使用 attrib 命令，dir 命令（dir /a) 或者D盾
+      - 排查：使用 attrib 命令，dir 命令（`dir /a`) 或者D盾
 
    2. ##### 使用ADS流隐藏webshell
 
@@ -114,10 +114,10 @@
    bitsadmin /Resume backdoor
    ```
 
-   - Ref : [bitsadmin-backdoor-权限维持后门](https://paper.tuisec.win/detail/77720db7618e92c)
+   - Ref :  [bitsadmin.md](bitsadmin.md) 
    - 优点：系统自带无需上传
    - 缺点：免杀效果一般
-   - 排查：bitsadmin /list /verbose
+   - 排查：`bitsadmin /list /verbose`
 
 8. #### WMI后门
 
