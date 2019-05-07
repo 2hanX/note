@@ -2,7 +2,7 @@
 
 ### **Traceroute的工作**
 
-![6](src/6.png)
+![6](../src/6.png)
 
 ### **跟踪Wireshark的Tracert **[^2]
 
