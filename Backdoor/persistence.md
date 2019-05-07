@@ -96,7 +96,7 @@
    - 不支持自启动，但可远程主动激活，后台进程显示为waitfor.exe
    - `certutil -encode infile outfile`
    - `certutil -decode infile outfile`
-   - Ref : [详细参考](https://github.com/3gstudent/Waitfor-Persistence)
+   - Ref : [详细参考](https://github.com/3gstudent/Waitfor-Persistence) 、[waitfor.md](waitfor.md) 
    - 优点：远程主动激活
    - 缺点：有waitfor进程
    - 排查：通过Process Explorer （procexp）工具查看是否有waitfor.exe进程，并进一步查看启动参数等
