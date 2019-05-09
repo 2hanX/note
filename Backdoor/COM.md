@@ -48,6 +48,10 @@ Windows RegistryEditor Version 5.00
 - 新建文件夹，以`CLSID`做为后缀名，同时将我们的利用dll拷贝到系统目录下
 - 打开文件夹，成功实现打开文件夹执行指定的程序
 
+### Ref
+
+-  [lib & dll.md](..\Tech\lib & dll.md) 
+
 
 
 [原文](https://www.freebuf.com/articles/system/115241.html)
