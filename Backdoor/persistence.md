@@ -128,7 +128,7 @@
 
 9. #### COM劫持
 
-   - Ref: [freebuf](https://www.freebuf.com/articles/system/115241.html)、[CLR](https://www.4hou.com/technology/6863.html) 
+   - Ref:  [COM.md](COM.md) 、[CLR](https://www.4hou.com/technology/6863.html) 
    - 优点：隐藏性较好,autoruns查不到
    - 缺点：暂无
    - 排查：检查环境变量和注册表键值

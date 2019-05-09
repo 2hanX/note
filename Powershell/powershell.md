@@ -46,6 +46,8 @@ ls
 
 `agents` [^10]
 
+`launcher powershell`
+
 `rename ZAF3GT5W raajpc` [^11]
 
 `interact raajpc` [^12]
