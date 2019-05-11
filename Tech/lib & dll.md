@@ -126,8 +126,8 @@
         #ifndef MYDLL_H_H
         #define MYDLL_H_H
         
-        extern "C" __declspec(dllexport) void display(void);
-        //这里的extern "C" 表示我们要按照C语言的方式编译该函数，防止在C++工程中编译出现函数名错误，因为C中没有重载而C++中允许重载，所以C++中函数编译后会出现display@1的形式；让编译器以C语言的编译方式编译可以保证C可以调用C++的动态链接库。`__declspec(dllexport)`表示下来的函数是dll的导出函数接口。没有导出的接口是不可使用的，这里和静态lib库有所区别，静态lib库中的所有函数、宏定义等都是可以使用的
+        extern "C" _declspec(dllexport) void display(void);
+        //这里的extern "C" 表示我们要按照C语言的方式编译该函数，防止在C++工程中编译出现函数名错误，因为C中没有重载而C++中允许重载，所以C++中函数编译后会出现display@1的形式；让编译器以C语言的编译方式编译可以保证C可以调用C++的动态链接库。`_declspec(dllexport)`表示下来的函数是dll的导出函数接口。没有导出的接口是不可使用的，这里和静态lib库有所区别，静态lib库中的所有函数、宏定义等都是可以使用的
         
         #endif
         ```
@@ -137,9 +137,9 @@
      1. 在资源文件目下添加def文件
 
         ```
-        LIBRARY
+        LIBRARY mydll1
         EXPORTS
-            display
+        display	@ 1; Export the display function
         ```
 
 5. dll的调用
@@ -148,26 +148,24 @@
 
      ```cpp
      // test_my_dll.cpp : 定义控制台应用程序的入口点。
-     //
+     // 运行时动态链接
      
      #include "stdafx.h"
      #include "windows.h"
+     typedef void(*print)(void);
      
-     
-     int _tmain(int argc, _TCHAR* argv[])
+     int main(int argc, char *argv[])
      {
-         HINSTANCE hInstance = LoadLibrary("mydll1.dll");
-         // 这种情况下：HINSTANCE hInstance = LoadLibrary("mydll1.dll");会出现”2 IntelliSense: "const char *" 类型的实参与 "LPCWSTR" 类型的形参不兼容 “问题。解决办法：工程--->属性--->常规-->字符集--->使用多字节字符集
-         
-         typedef void(*_print)(void);
-         _print printFun;
-         if(hInstance != NULL)
+         HMODULE hDll = LoadLibrary("mydll1.dll");
+         if(hDll != NULL)
          {
-             printFun = (_print)GetProcAddress(hInstance,"display1");
+             print printFun = (print)GetProcAddress(hDll,"display1");
+             //print printFun = (print)GetProcAddress(hDll,MAKEINTRESOURCE(1));
          }
-         printFun();
-         FreeLibrary(hInstance);
-         system("pause");
+         if (printFun != NULL){
+             display1();
+         }
+         FreeLibrary(hDll);
          return 0;
      }
      ```
@@ -179,6 +177,10 @@
 ### 总结
 
 显示调用和隐式调用这两种方法各有千秋，显示调用优点是只要接口参数列表没有发生改变，修改了函数实现的细节也没关系，所调用的exe程序不用重新编译只需替换新版的dll就可以。在大的项目中只用比较方便，但调用过程相对复杂需要使用一系列的windows函数还有函数指针等。对于隐式调用和static library用法一致比较容易理解，缺点是只要修改了任意内容相应的exe都需要重新编译
+
+### Ref 
+
+- [在VS中使用C++创建和使用DLL](https://www.cnblogs.com/ring1992/p/6003248.html)
 
 
 
