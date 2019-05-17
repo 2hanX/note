@@ -164,7 +164,71 @@
   | G                | 64                 |
   | 隐藏所有磁盘     | 67108863           |
 
-  
+
+### 强化BitLocker加密的安全性
+
+`HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft`
+
+- 添加项名：`FVE`
+
+- 在其下添加键名：`EncryptionMethod` : REG_DWORD: `2`
+
+  | 键值 | 内容                         |
+  | ---- | ---------------------------- |
+  | 1    | 128位加强型AES加密（默认值） |
+  | 2    | 256位加强型AES加密           |
+  | 3    | 128位AES加密                 |
+  | 4    | 256位AES加密                 |
+
+### 封锁Windows所有的快捷键功能
+
+`HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer`
+
+- 新建键值：`NoWinKeys`：REG_DWORD：`1`
+
+  | 快捷键        | 功能         |
+  | ------------- | ------------ |
+  | `Win + space` | Aero Peek    |
+  | `Win + P`     | 切换到投影仪 |
+  | `Win + ↑`     | 窗口最大化   |
+  | `Win + ←`     | 窗口靠左放大 |
+  | `Win + +`     | 放大镜       |
+
+### 删除“运行”命令的操作记录信息
+
+`HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU`
+
+- 删除 `RunMRU`
+
+### 关闭默认打开的共享文件夹（远程访问这些文件夹，需要管理员权限） [^8]
+
+`HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters`
+
+- 新建键值：`AutoShareServer `: REG_DWORD : `0`
+- 新建键值：`AutoShareWKs `: REG_DWORD : `0`
+
+### 自动清除打开过的文件记录
+
+`HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer`
+
+- 新建键值：`ClearRecentDocsOnExit `: REG_DWORD : `1`
+
+### 彻底清除访问过的网页记录
+
+`HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\TypedURLs`
+
+- 删除表项
+
+### 注册表使“显示隐藏的文件、文件夹和驱动器”失效
+
+`HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced`
+
+- 新建项：`Folder`
+- 在其下新建项：`Hidden`
+- 在其下新建项：`SHOWALL`
+- 在其下添加键值：`CheckedValue `: REG_DWORD : `0`
+
+
 
 ---
 
@@ -175,3 +239,4 @@
 [^5]: 修改 `1 `：`00000804`
 [^6]: 添加项名： `DesktopLivePreviewHoverTime `：`REG_DWORD `: `0`
 [^7]: 重新启动后，如果要把数据写入U盘，系统会出现错误信息不让数据写入，同时除了U盘外，包括读卡器、MP3等通过USB传输的设备都不能写入
+[^8]: `\\127.0.0.1\c$`  : 显示C盘下的文件内容
