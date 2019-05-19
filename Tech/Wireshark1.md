@@ -22,7 +22,7 @@
 
    `airmon-ng start wlan0`
 
-   `airodump-ng start wlan0mon`
+   `airodump-ng wlan0mon`
 
    `airmon-ng start wlan0mon 11`
 
@@ -40,7 +40,7 @@
 
    `mdk3 wlan0mon d -c 11`
 
-   `airodump-ng wlan0mon 11`
+   `airodump-ng wlan0mon -c 11`
 
 7. Filter the Traffic to Find HTTP Traffic
 
