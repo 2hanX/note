@@ -14,6 +14,6 @@
 
 ### 使用windows 命令行查看文件内容
 
-1. type demo.txt
-2. type demo.txt | findstr hello
+1. `type demo.txt`
+2. `type demo.txt | findstr hello`
 
