@@ -1,9 +1,5 @@
 ## 1 Vulnhub Walkthrough
 
-###### #Intermediate
-
-
-
 ### **Penetrating Methodologies**
 
 - IP discovery and Port Scanning.

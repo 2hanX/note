@@ -1,7 +1,5 @@
 ## Vulnhub Walkthrough
 
-###### #Beginner
-
 **Penetrating Methodology:**
 
 - IP Discovery using netdiscover
