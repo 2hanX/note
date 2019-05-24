@@ -6,7 +6,7 @@
 
 ### **语法和参数**
 
-![](http://ww1.sinaimg.cn/large/007DJod2gy1g0phekdbf3j30i508zdg3.jpg)
+![lazagne](../src/lazagne.jpg)
 
 ### **实现Meterpreter并上传LaZagne**
 
