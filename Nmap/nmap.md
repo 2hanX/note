@@ -5,6 +5,7 @@
 `nmap -p21-25 192.168.1.139 --max-retries 0 ` [^1]
 
 ```bash
+# 在目标计算机上应用一个小型防火墙规则，以便在数据包速度更快时阻止数据包
 sudo iptables -I INPUT -p tcp -m state --state NEW -m recent --set
 sudo iptables -I INPUT -p tcp -m state --state NEW -m recent --update --seconds 1 --hitcount 1 -j DROP 
 ```
@@ -27,10 +28,9 @@ sudo iptables -I INPUT -p tcp -m state --state NEW -m recent --update --seconds 
 
 ---
 
-[^1]: max-retries指定在端口上重新发送数据包以检查其是打开还是关闭的次数。如果-max-retries设置为0，则数据包将仅在端口上发送一次，并且不会重试
-[^2]: 在目标计算机上应用一个小型防火墙规则，以便在数据包速度更快时阻止数据包。
-[^3]: 指定hostgroup属性以一次扫描网络中指定数量的主机。您需要一次指定要扫描的最小主机数或最大主机数或两者
-[^4]: 扫描延迟用于延迟在指定时间发送的数据包。它在避开基于时间的防火墙方面非常有用。
-[^5]: **最高费率（最高费率）**Rate是一个属性，指定要发送数据包的速率，换句话说，一次发送的数据包数。Max-rate指定一次发送的最大数据包数。
-[^6]: **往返超时**Rtt超时是指定数据包返回应答的时间，min-rtt-timeout指定数据包返回应答所用的最小时间值
-[^7]: **初始往返超时**Initial-rtt-timeout指定数据包返回应答所用的初始值，返回时间可以大于或小于initial-rtt-timeout，因为max-rtt-timeout和min-rtt- timeout指定数据包返回应答的时间范围，但数据包尝试在initial-rtt-timeout中指定的时间内返回应答
+[^1]: `--max-retries`：指定在端口上重新发送数据包以检查其是打开还是关闭的次数。如果`--max-retries`设置为0，则数据包将仅在端口上发送一次，并且不会重试
+[^3]: `hostgroup`属性指明一次扫描网络中指定数量的主机，需要设定要扫描的最小主机数或最大主机数或两者
+[^4]: `--scan-delay`：用于延迟在指定时间发送的数据包，它在避开基于时间的防火墙方面非常有用
+[^5]: `--max-rate`：指定要发送数据包的速率，也就是一次发送的最大数据包数
+[^6]: `--min-rtt-timeout`：指定数据包返回应答时使用的最小时间值
+[^7]: `--initial-rtt-timeout`：指定数据包返回应答所用的初始值，返回时间可以大于或小于`initial-rtt-timeout`，因为`max-rtt-timeout`和`min-rtt-timeout`指定数据包返回应答的时间范围，但数据包尝试在`initial-rtt-timeout`中指定的时间内返回应答
