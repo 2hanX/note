@@ -11,7 +11,7 @@ ping <IP> -n 1 -l 3 #打标记；发送ICMP包长度为3个字节：abc
 
 #### 显示顺序
 
-在`wireshark→Preferences→Appearance→Columns`下添加列标记，`Fields`填`data.len`
+在`wireshark`→``Preferences`→`Appearance`→`Columns`下添加列标记，`Fields`填`data.len`
 
 ### 调整日期格式[^1]
 
@@ -45,7 +45,7 @@ ping <IP> -n 1 -l 3 #打标记；发送ICMP包长度为3个字节：abc
   1. 每个包的TCP层都含有 `window size value`（`Win=`）信息，表示告诉对方自己的接收窗口大小
   2. 一旦对方收到该包，就会把自己的发送窗口限制在该值之内
 - 真正TCP接收窗口大小（==ACK==包中）
-  - TCP标头为窗口大小分配的值是两个字节，意味着接收窗口的最高可能数值为==65535（2^16-1）==字节；如今此窗口大小不足以提供最佳流量；因此[RFC 1323](https://www.ietf.org/rfc/rfc1323.txt)中引入了TCP选项，使  **TCP接收窗口能够以指数方式增加，特定功能称为TCP窗口缩放**
+  - TCP标头为窗口大小分配的值是两个字节，意味着接收窗口的最高可能数值为==65535（2^16^-1）==字节；如今此窗口大小不足以提供最佳流量；因此[RFC 1323](https://www.ietf.org/rfc/rfc1323.txt)中引入了TCP选项，使  **TCP接收窗口能够以指数方式增加，特定功能称为TCP窗口缩放**
   - `Calulated window size`= `{2^(shift count)|[Window size scaling factor]}*(Window size value)`
   - `Window Scale`：向对方声明一个`Shift count`
 - 增大接收窗口
