@@ -40,6 +40,14 @@ Ref.
 - [decrypt_ssl](https://www.joji.me/zh-cn/blog/walkthrough-decrypt-ssl-tls-traffic-https-and-http2-in-wireshark/)
 - [wiki_wireshark](https://wiki.wireshark.org/TLS?action=show&redirect=SSL)
 
+### 只抓包头
+
+`Capture`→`Options`→`Snaplen（200 bytes）`
+
+`dumpcap -s 200 -c 10`
+
+`capinfos dump.pcapng`
+
 
 
 ---
