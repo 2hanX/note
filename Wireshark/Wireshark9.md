@@ -69,8 +69,6 @@
 
 `editcap -F pcap example.erf transter.pcap`
 
-
-
 ### Ref.
 
 - [wireshark docs](https://www.wireshark.org/docs/man-pages/)
