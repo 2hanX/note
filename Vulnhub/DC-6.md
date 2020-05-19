@@ -112,4 +112,3 @@ Kali 接收到反弹 shell，并且成功 Getshell。之后在 `/home `目录下
 2. `wpscan` 工具枚举用户：
 
    `wpscan --url xxx --enumerate u`
-
